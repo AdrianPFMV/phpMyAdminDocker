@@ -1,0 +1,29 @@
+version: '3.1'
+
+services:
+  mysqlDB:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: QWERTY
+    volumes:
+      - mi_volumenAPF:/var/lib/mysql
+    networks:
+      - mi_redAPF
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - mi_redAPF
+    environment:
+      - PMA_ARBITRARY=1
+
+volumes:
+  mi_volumenAPF:
+    
+
+networks:
+  mi_redAPF:
